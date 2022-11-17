@@ -1,12 +1,14 @@
 package me.imlukas.devnicschatplugin.gui;
 
-import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
+import me.imlukas.devnicschatplugin.ChannelsPlugin;
 import me.imlukas.devnicschatplugin.channels.data.ChannelData;
+import me.imlukas.devnicschatplugin.utils.TextUtil;
 import me.imlukas.devnicschatplugin.utils.menu.MenuItem;
 import me.imlukas.devnicschatplugin.utils.menu.PaginableMenu;
 import me.imlukas.devnicschatplugin.utils.menu.concurrent.Reference;
 import me.imlukas.devnicschatplugin.utils.menu.data.PaginableElement;
 import me.imlukas.devnicschatplugin.utils.menu.placeholder.Placeholder;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -17,15 +19,17 @@ import java.util.function.Consumer;
 public class ChannelListMenu {
 
 
-    public static void init(DevnicsChatPlugin main){
+    public static void init(ChannelsPlugin main){
 
         main.getMenuManager().associateMenuInit("channel-list", (baseMenu) -> baseMenu.setBuildAction((player) -> {
             PaginableMenu menu = (PaginableMenu) baseMenu;
 
             MenuItem channelItem = menu.getItem("d");
             MenuItem activeItem = menu.getItem("d-active");
+            menu.getItem("cl").onClickAction(HumanEntity::closeInventory);
 
             menu.clearElements();
+
 
             main.getChannelConfig().getChannels().thenAccept(channels -> {
 
@@ -39,9 +43,11 @@ public class ChannelListMenu {
 
 
                     List<Placeholder<Player>> placeholders = new ArrayList<>();
-                    placeholders.add(new Placeholder<>("channel-name", channel.getName()));
+                    placeholders.add(new Placeholder<>("channel-name", TextUtil.color(channel.getName())));
                     placeholders.add(new Placeholder<>("channel-range", String.valueOf(channel.getRange())));
-                    placeholders.add(new Placeholder<>("channel-prefix", channel.getPrefix()));
+                    placeholders.add(new Placeholder<>("channel-uuid", String.valueOf(channel.getUUID())));
+                    placeholders.add(new Placeholder<>("channel-prefix", TextUtil.color(channel.getPrefix())));
+                    placeholders.add(new Placeholder<>("channel-worlds", String.valueOf(channel.getWorlds())));
 
                     MenuItem item = (isSelected.get() ? activeItem : channelItem).clone();
                     PaginableElement element = new PaginableElement(placeholders, item);

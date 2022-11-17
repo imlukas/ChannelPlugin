@@ -1,6 +1,7 @@
 package me.imlukas.devnicschatplugin.channels.data;
 
 import lombok.Getter;
+import me.imlukas.devnicschatplugin.channels.DefaultChannels;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class ChannelCache {
     }
 
     /**
-     * Removec a player from the cache
+     * Remove a player from the cache
      * @param playerUUID The player's UUID
      */
     public void removePlayer(UUID playerUUID){
@@ -47,9 +48,18 @@ public class ChannelCache {
         return playerChannelCache.containsKey(playerUUID);
     }
 
+    /**
+     * Reset all the players that are in a certain channel
+     * This is to avoid errors when deleting channels
+     * @param channelUUID the deleted channel's UUID
+     */
+    public void resetPlayers(UUID channelUUID) {
 
-
-
-
-
+        for(Map.Entry<UUID, UUID> entry : playerChannelCache.entrySet()) {
+            if (!(entry.getValue().equals(channelUUID))){
+                continue;
+            }
+            setPlayer(entry.getKey(), DefaultChannels.GLOBAL.channelUUID);
+        }
+    }
 }

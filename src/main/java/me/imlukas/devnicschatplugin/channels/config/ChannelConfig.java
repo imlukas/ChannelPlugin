@@ -1,13 +1,11 @@
 package me.imlukas.devnicschatplugin.channels.config;
 
-import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
+import me.imlukas.devnicschatplugin.ChannelsPlugin;
 import me.imlukas.devnicschatplugin.channels.Channel;
 import me.imlukas.devnicschatplugin.channels.data.ChannelData;
 import me.imlukas.devnicschatplugin.sql.SQLHandler;
 import me.imlukas.devnicschatplugin.utils.storage.MessagesFile;
 import me.imlukas.devnicschatplugin.utils.storage.YMLBase;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.*;
@@ -18,7 +16,7 @@ public class ChannelConfig extends YMLBase {
     private final MessagesFile messages;
     private final SQLHandler sqlHandler;
 
-    public ChannelConfig(DevnicsChatPlugin main) {
+    public ChannelConfig(ChannelsPlugin main) {
         super(main, "channels.yml");
         this.messages = main.getMessages();
         this.sqlHandler = main.getSqlHandler();
@@ -36,15 +34,8 @@ public class ChannelConfig extends YMLBase {
         if (section == null){
             return null;
         }
-        List<World> worlds = new ArrayList<>();
 
-        for (String world : getConfiguration().getStringList("channels." + channelUUID + ".worlds")) {
-
-            if (world.equalsIgnoreCase("%player_world%")) {
-                continue;
-            }
-            worlds.add(Bukkit.getWorld(world));
-        }
+        List<String> worlds = new ArrayList<>(getConfiguration().getStringList("channels." + channelUUID + ".worlds"));
 
         return new ChannelData(
                 channelUUID,
@@ -66,8 +57,8 @@ public class ChannelConfig extends YMLBase {
         if (channelData.getChannelPrefix() != null){
             getConfiguration().set("channels." + channelData.getChannelID() + ".prefix", channelData.getChannelPrefix());
         }
-        if (channelData.getDistance() != 0){
-            getConfiguration().set("channels." + channelData.getChannelID() + ".distance", channelData.getDistance());
+        if (channelData.getRange() != 0){
+            getConfiguration().set("channels." + channelData.getChannelID() + ".range", channelData.getRange());
         }
         if (channelData.getWorlds() != null){
             getConfiguration().set("channels." + channelData.getChannelID() + ".worlds", channelData.getWorlds());
@@ -82,7 +73,6 @@ public class ChannelConfig extends YMLBase {
      * @param channelUUID channel uuid of the channel.
      */
     public void deleteChannel(UUID channelUUID){
-        sqlHandler.resetPlayers(channelUUID);
         getConfiguration().set("channels." + channelUUID, null);
         save();
     }

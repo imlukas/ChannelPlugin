@@ -1,6 +1,6 @@
 package me.imlukas.devnicschatplugin.utils;
 
-import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
+import me.imlukas.devnicschatplugin.ChannelsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -14,7 +14,7 @@ public class TextUtil {
     private final FileConfiguration config;
     private static Pattern pattern;
 
-    public TextUtil(DevnicsChatPlugin main) {
+    public TextUtil(ChannelsPlugin main) {
         this.config = main.getConfig();
         pattern = Pattern.compile("#[a-fA-F0-9]{6}");
     }

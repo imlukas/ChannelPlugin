@@ -1,6 +1,6 @@
-package me.imlukas.devnicschatplugin.channels.listeners;
+package me.imlukas.devnicschatplugin.listeners;
 
-import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
+import me.imlukas.devnicschatplugin.ChannelsPlugin;
 import me.imlukas.devnicschatplugin.channels.data.ChannelCache;
 import me.imlukas.devnicschatplugin.channels.DefaultChannels;
 import me.imlukas.devnicschatplugin.sql.SQLHandler;
@@ -16,7 +16,7 @@ public class PlayerLeaveListener implements Listener {
     private final SQLHandler sqlHandler;
     private final ChannelCache channelCache;
 
-    public PlayerLeaveListener(DevnicsChatPlugin main) {
+    public PlayerLeaveListener(ChannelsPlugin main) {
         this.sqlHandler = main.getSqlHandler();
         this.channelCache = main.getChannelCache();
     }

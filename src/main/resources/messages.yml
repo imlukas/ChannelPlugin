@@ -1,12 +1,12 @@
 messages:
   use-prefix: true # NOTE: this does not disable %prefix% -- Messages in a list of messages will not have prefix by default. You need to use the %prefix%.
-  prefix: "&b&l[DevnicsChat]" # prefix to appear besides the messages, use %prefix% to force a prefix onto a message
+  prefix: "&b&l[ChannelPlugin]" # prefix to appear besides the messages, use %prefix% to force a prefix onto a message
   arrow: "->" # arrow to appear before the messages [MobKillTrade] >> This is a message
   actionbar:
     enabled: true
 
   global:
-    usage: "&7Usage: /chat (chatname)"
+    invalid-args: "&cInvalid arguments!"
     not-player: '&cThis command can only be used by a player'
     no-permission: '&cYou do not have permission to do this'
     player-not-found: '&cPlayer %player% not found'
@@ -14,13 +14,8 @@ messages:
     feature-on: '&7%feature% is now &aon'
     feature-off: '&7%feature% is now &coff'
   channel:
-    delete:
-      sucess: '&7Channel &a%channel% &7deleted'
-      error: '&cError deleting channel'
-    create:
-      sucess: '&7Channel &a%channel% &7created'
-      error: '&cError creating channel'
+    delete: '&7Channel &a%channel% &7deleted'
+    create: '&7Channel &a%channel% &7created'
     join: '&7Joined channel &a%channel%'
-
-    reset: "&7Player &a%player% &7has been reset. His channel has been set to &a%channel%"
+    reset: "&7Reset done. You are now in the default (global) channel."
     set: "&7Player &a%player% &7has been set to channel &a%channel%"

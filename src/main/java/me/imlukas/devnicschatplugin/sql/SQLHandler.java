@@ -1,10 +1,9 @@
 package me.imlukas.devnicschatplugin.sql;
 
-import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
+import me.imlukas.devnicschatplugin.ChannelsPlugin;
 import me.imlukas.devnicschatplugin.channels.config.ChannelConfig;
 import me.imlukas.devnicschatplugin.channels.data.ChannelData;
 import me.imlukas.devnicschatplugin.channels.DefaultChannels;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +20,7 @@ public class SQLHandler {
     private final ChannelConfig channelConfig;
     private PreparedStatement query;
 
-    public SQLHandler(DevnicsChatPlugin main) {
+    public SQLHandler(ChannelsPlugin main) {
         this.channelConfig = main.getChannelConfig();
         SQLSetup sqlSetup = main.getSqlSetup();
         connection = sqlSetup.get();
@@ -105,21 +104,22 @@ public class SQLHandler {
      * @param channelUUID The UUID of the channel
      */
     public void setChannel(UUID playerUUID, UUID channelUUID) {
+        ChannelData channelData = channelConfig.getChannelData(channelUUID);
         CompletableFuture.runAsync(() -> {
-            ChannelData channelData = channelConfig.getChannelData(channelUUID);
             try {
                 query = connection.prepareStatement(UPDATE_PLAYER_CHANNEL);
                 query.setString(1, channelData.getName());
                 query.setString(2, channelData.getUUID().toString());
                 query.setString(3, playerUUID.toString());
+
                 query.executeUpdate();
+                System.out.println("Updated player " + playerUUID + " to channel " + channelUUID);
             }
             catch (Exception e){
                 System.out.println("[DevnicsChat] Error while setting channel for player " + playerUUID.toString());
                 e.printStackTrace();
             }
         });
-
     }
 
     /**

@@ -19,9 +19,23 @@ items:
   d:
     type: BOOK
     name: "&a%channel-name%"
+    lore:
+      - "&7Click to join this channel"
+      - "&7Channel Info:"
+      - "&7UUID: &a%channel-uuid%"
+      - "&7Prefix: &a%channel-prefix%"
+      - "&7Range: &a%channel-range%"
+      - "&7Worlds: &a%channel-worlds%"
   d-active:
     type: ENCHANTED_BOOK
     name: "&c%channel-name%"
+    lore:
+      - "&7You are in this channel"
+      - "&7Channel Info:"
+      - "&7UUID: &a%channel-uuid%"
+      - "&7Prefix: &a%channel-prefix%"
+      - "&7Range: &a%channel-range%"
+      - "&7Worlds: &a%channel-worlds%"
   cl:
     type: BARRIER
     name: "&c&lClose"
