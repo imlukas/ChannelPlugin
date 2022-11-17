@@ -1,10 +1,8 @@
 package me.imlukas.devnicschatplugin.channels.listeners;
 
 import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
-import me.imlukas.devnicschatplugin.channels.ChannelCache;
+import me.imlukas.devnicschatplugin.channels.data.ChannelCache;
 import me.imlukas.devnicschatplugin.channels.DefaultChannels;
-import me.imlukas.devnicschatplugin.channels.config.ChannelConfig;
-import me.imlukas.devnicschatplugin.channels.impl.ChannelData;
 import me.imlukas.devnicschatplugin.sql.SQLHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,14 +31,14 @@ public class PlayerJoinListener implements Listener {
            sqlHandler.getChannel(playerUUID).thenAccept((uuid) -> {
 
                UUID channelUUID = UUID.fromString(uuid);
-               channelCache.addPlayer(playerUUID, channelUUID);
+               channelCache.setPlayer(playerUUID, channelUUID);
 
            });
            return;
        }
 
        sqlHandler.addPlayer(playerUUID);
-       channelCache.addPlayer(playerUUID, DefaultChannels.GLOBAL.channelUUID);
+       channelCache.setPlayer(playerUUID, DefaultChannels.GLOBAL.channelUUID);
 
     }
 

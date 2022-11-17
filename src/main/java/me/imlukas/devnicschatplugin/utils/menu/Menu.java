@@ -77,22 +77,17 @@ public class Menu implements InventoryHolder {
             if (item == null)
                 continue;
 
-            System.out.println("Comparing " + text + " to " + item.getOriginalCharacter());
             if (item.getOriginalCharacter().equals(text)) {
-                System.out.println("Found!");
                 return item;
             }
         }
 
         for (MenuItem item : registeredItems) {
-            System.out.println("Comparing " + text + " to " + item.getOriginalCharacter());
             if (item.getOriginalCharacter().equals(text)) {
-                System.out.println("Found!");
                 return item;
             }
         }
 
-        System.out.println("Boy what the HEEEEEEEEEEELL");
         return null;
     }
 
@@ -120,8 +115,7 @@ public class Menu implements InventoryHolder {
     }
 
     public void build(Player player) {
-        if (buildAction != null) {
-            System.out.println("Running build action");
+        if (buildAction != null) {;
             buildAction.accept(player);
         }
 
@@ -131,7 +125,6 @@ public class Menu implements InventoryHolder {
             builtInventory = Bukkit.createInventory(this, rowsToSlots(), process(title, player));
         }
 
-        // System.out.println("Setting items");
         for (Map.Entry<Integer, MenuItem> entry : setItems.entrySet()) {
             int slot = entry.getKey() - 1;
 

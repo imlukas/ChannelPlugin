@@ -1,7 +1,7 @@
 package me.imlukas.devnicschatplugin.channels.listeners;
 
 import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
-import me.imlukas.devnicschatplugin.channels.ChannelCache;
+import me.imlukas.devnicschatplugin.channels.data.ChannelCache;
 import me.imlukas.devnicschatplugin.channels.DefaultChannels;
 import me.imlukas.devnicschatplugin.sql.SQLHandler;
 import org.bukkit.entity.Player;

@@ -1,15 +1,14 @@
 package me.imlukas.devnicschatplugin.channels.config;
 
 import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
-import me.imlukas.devnicschatplugin.channels.impl.Channel;
-import me.imlukas.devnicschatplugin.channels.impl.ChannelData;
+import me.imlukas.devnicschatplugin.channels.Channel;
+import me.imlukas.devnicschatplugin.channels.data.ChannelData;
 import me.imlukas.devnicschatplugin.sql.SQLHandler;
 import me.imlukas.devnicschatplugin.utils.storage.MessagesFile;
 import me.imlukas.devnicschatplugin.utils.storage.YMLBase;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Player;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -25,6 +24,11 @@ public class ChannelConfig extends YMLBase {
         this.sqlHandler = main.getSqlHandler();
     }
 
+    /**
+     * Gets the channel data from the channel UUID
+     * @param channelUUID The channel UUID
+     * @return the channel's data or null if the channel doesn't exist
+     */
     public ChannelData getChannelData(UUID channelUUID){
 
         ConfigurationSection section = getConfiguration().getConfigurationSection("channels." + channelUUID.toString());
@@ -52,6 +56,10 @@ public class ChannelConfig extends YMLBase {
     }
 
 
+    /**
+     * Add a channel to the config
+     * @param channelData channel data of the channel.
+     */
     public void addChannel(Channel channelData){
         getConfiguration().set("channels." + channelData.getChannelID() + ".name", channelData.getChannelName());
 
@@ -69,15 +77,23 @@ public class ChannelConfig extends YMLBase {
 
     }
 
-    public void deleteChannel(UUID channelID){
-        sqlHandler.resetPlayers(getChannelData(channelID).getName());
-        getConfiguration().set("channels." + channelID, null);
+    /**
+     * Remove a channel from the config
+     * @param channelUUID channel uuid of the channel.
+     */
+    public void deleteChannel(UUID channelUUID){
+        sqlHandler.resetPlayers(channelUUID);
+        getConfiguration().set("channels." + channelUUID, null);
         save();
     }
 
-    public CompletableFuture<Set<ChannelData>> getChannels() {
+    /**
+     * Get all channels from the config
+     * @return list of all channels
+     */
+    public CompletableFuture<LinkedList<ChannelData>> getChannels() {
         return CompletableFuture.supplyAsync(() -> {
-            Set<ChannelData> channels = new HashSet<>();
+            LinkedList<ChannelData> channels = new LinkedList<>();
             for (String key : getConfiguration().getConfigurationSection("channels").getKeys(false)) {
                 UUID uuid = UUID.fromString(key);
                 ChannelData channelData = getChannelData(uuid);

@@ -1,4 +1,4 @@
-package me.imlukas.devnicschatplugin.channels.impl;
+package me.imlukas.devnicschatplugin.channels.data;
 
 import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
 import org.bukkit.World;

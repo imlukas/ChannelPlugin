@@ -28,10 +28,6 @@ public class PaginableMenu extends Menu {
     public void init(MenuLayout layout) {
         ConfigurationSection config = layout.getConfig().getConfigurationSection("pagination");
 
-        for (String key : config.getKeys(false)) {
-            // System.out.println(key + ": " + config.getString(key));
-        }
-
         filler = getItem(config.getString("filler", "."));
         previousPage = getItem(config.getString("previous-page", "."));
         nextPage = getItem(config.getString("next-page", "."));
@@ -100,7 +96,6 @@ public class PaginableMenu extends Menu {
     }
 
     public void addElement(PaginableElement element) {
-        System.out.println("Adding element: " + element);
         this.elements.add(element);
     }
 
@@ -108,14 +103,13 @@ public class PaginableMenu extends Menu {
         int start = (page - 1) * elementSlots.size();
         int end = start + elementSlots.size();
 
-        // System.out.println("Rendering page " + page + " from " + start + " to " + end);
-        //  System.out.println("Elements: " + elements.size());
+
 
         for (int index = start; index < end; index++) {
-            // System.out.println("Rendering element " + index);
+
 
             if (index - start >= elements.size()) {
-                // System.out.println("No more elements");
+
                 setItems.put(elementSlots.get(index - start), filler.clone());
                 getInventory().setItem(elementSlots.get(index - start) - 1,
                         filler.clone().getItem());
@@ -132,7 +126,7 @@ public class PaginableMenu extends Menu {
                 item.onClick(clickAction);
             }
 
-            // System.out.println("Element " + index + " exists");
+
             setItems.put(elementSlots.get(index - start), item);
             getInventory().setItem(elementSlots.get(index - start) - 1,
                     process(item.getItem().clone(), player, placeholders));

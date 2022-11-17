@@ -27,8 +27,8 @@ public class MessagesFile extends YMLBase {
     public MessagesFile(JavaPlugin plugin) {
         super(plugin, new File(plugin.getDataFolder(), "messages.yml"), true);
         pattern = Pattern.compile("#[a-fA-F0-9]{6}");
-        prefix = StringEscapeUtils.unescapeJava(getConfiguration().getString("messages.prefix"));
-        arrow = StringEscapeUtils.unescapeJava(getConfiguration().getString("messages.arrow"));
+        prefix = getConfiguration().getString("messages.prefix");
+        arrow = getConfiguration().getString("messages.arrow");
         usePrefixConfig = getConfiguration().getBoolean("messages.use-prefix");
         useActionBar = getConfiguration().getBoolean("messages.actionbar.enabled");
 
@@ -89,7 +89,7 @@ public class MessagesFile extends YMLBase {
 
         if (getConfiguration().isList("messages." + name)) {
             for (String str : getConfiguration().getStringList("messages." + name)) {
-                msg = StringEscapeUtils.unescapeJava(str.replace("%prefix%", prefix));
+                msg = str.replace("%prefix%", prefix);
                 msg = action.apply(msg);
                 player.sendMessage(setColor(msg));
             }

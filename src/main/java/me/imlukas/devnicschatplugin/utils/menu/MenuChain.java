@@ -22,10 +22,7 @@ public class MenuChain extends LinkedList<Menu> {
 
     public void open(Menu menu, Player player) {
 
-        System.out.println("Opening menu " + menu);
         lastClosedMenu = peekLast();
-
-        System.out.println("Last closed menu: " + lastClosedMenu);
 
         chain(menu);
         menu.open(player);
@@ -35,7 +32,6 @@ public class MenuChain extends LinkedList<Menu> {
         Menu previous = unchain();
 
         if (previous == null) {
-            System.out.println("No previous menu");
             return;
         }
 
@@ -45,7 +41,6 @@ public class MenuChain extends LinkedList<Menu> {
         previous = previous.getMenuManager().getGUI(previous.getOriginalName());
         previous.getMetadata().copyFrom(metadata);
 
-        System.out.println("Going back to " + previous.getOriginalName());
         previous.build(player); // update internals
         previous.open(player);
 

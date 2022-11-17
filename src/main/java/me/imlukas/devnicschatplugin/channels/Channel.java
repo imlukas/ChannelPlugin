@@ -1,8 +1,9 @@
-package me.imlukas.devnicschatplugin.channels.impl;
+package me.imlukas.devnicschatplugin.channels;
 
 import lombok.Getter;
 import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
 import me.imlukas.devnicschatplugin.channels.config.ChannelConfig;
+import me.imlukas.devnicschatplugin.channels.data.ChannelData;
 import org.bukkit.World;
 
 import java.util.Set;

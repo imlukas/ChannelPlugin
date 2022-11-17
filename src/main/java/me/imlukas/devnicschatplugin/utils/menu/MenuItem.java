@@ -55,7 +55,6 @@ public class MenuItem implements Cloneable {
             runActions.add(
                     (player) -> {
                         Menu menu = manager.getGUI(target);
-                        System.out.println("Opening chain menu " + menu);
                         manager.getChain(player).open(menu, player);
                     });
         }

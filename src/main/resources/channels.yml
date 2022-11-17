@@ -19,6 +19,6 @@ channels:
     prefix: "[Whisper]"
     range: 10
   a431278f-4228-4915-aa5a-a8afabef4818:
-    name: "Local"
+    name: "Shout"
     prefix: "[Shout]"
     range: 100

@@ -13,3 +13,14 @@ messages:
     channel-not-found: '&cChannel with UUID: %uuid% not found'
     feature-on: '&7%feature% is now &aon'
     feature-off: '&7%feature% is now &coff'
+  channel:
+    delete:
+      sucess: '&7Channel &a%channel% &7deleted'
+      error: '&cError deleting channel'
+    create:
+      sucess: '&7Channel &a%channel% &7created'
+      error: '&cError creating channel'
+    join: '&7Joined channel &a%channel%'
+
+    reset: "&7Player &a%player% &7has been reset. His channel has been set to &a%channel%"
+    set: "&7Player &a%player% &7has been set to channel &a%channel%"

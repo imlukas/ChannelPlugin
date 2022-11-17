@@ -3,6 +3,7 @@ package me.imlukas.devnicschatplugin.sql;
 import me.imlukas.devnicschatplugin.utils.SQLConnectionProvider;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Logger;
 
@@ -26,7 +27,10 @@ public class SQLSetup extends SQLConnectionProvider {
         this.password = password;
         this.port = port;
         this.database = database;
+        load();
+        createTables();
     }
+
 
     @Override
     public void load() {
@@ -43,12 +47,16 @@ public class SQLSetup extends SQLConnectionProvider {
         }
     }
 
+    /**
+     * Creates the tables if they don't exist
+     */
     public void createTables() {
         CompletableFuture.runAsync(() -> {
             try {
                 for (String query : TABLES) {
                     connection.createStatement().execute(query);
                 }
+                System.out.println("[DevnicsChat] Created tables.");
             } catch (Exception e) {
                 log.info(e.toString());
             }

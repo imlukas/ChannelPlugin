@@ -52,7 +52,7 @@ public class MenuListener implements Listener {
             if (!manager.getHeldMenus(event.getPlayer().getUniqueId()).isEmpty())
                 return;
 
-            System.out.println("Breaking chain for player " + event.getPlayer().getName() + " because they closed the menu " + menu.getOriginalName() + " instead of the last closed menu " + lastClosed.getOriginalName());
+
             chain.clear(); // Break the chain - The player isn't transferring between menus, instead they're closing the menu
         }
     }
@@ -75,7 +75,6 @@ public class MenuListener implements Listener {
                 continue;
             }
 
-            System.out.println("Canceling event");
             event.setCancelled(true);
             manager.removeHeldMenu(data);
 

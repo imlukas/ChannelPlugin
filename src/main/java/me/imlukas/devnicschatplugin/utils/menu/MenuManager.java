@@ -61,7 +61,6 @@ public class MenuManager {
 
         File[] files = menuFolder.listFiles();
 
-        System.out.println("Loading " + files.length + " menu layouts");
 
         for (File file : files) {
             if (file.isDirectory()) {
@@ -78,7 +77,6 @@ public class MenuManager {
         MenuLayout layout = MenuLayout.parse(this, config);
         String name = file.getName().replace(".yml", "");
 
-        System.out.println("Loaded menu layout: " + name);
         loadedLayouts.put(name, layout);
     }
 
@@ -108,7 +106,6 @@ public class MenuManager {
                 initMenu(file, config);
                 return getGUI(menuName);
             } catch (Exception e) {
-                System.out.println("Failed to load menu: " + menuName);
                 return null;
             }
 

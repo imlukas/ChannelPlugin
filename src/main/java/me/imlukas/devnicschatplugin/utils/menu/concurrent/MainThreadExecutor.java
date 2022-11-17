@@ -2,8 +2,6 @@ package me.imlukas.devnicschatplugin.utils.menu.concurrent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 
@@ -16,12 +14,12 @@ public final class MainThreadExecutor implements Executor {
     private MainThreadExecutor() {
     }
 
-    public static void init(@NotNull JavaPlugin main) {
+    public static void init(JavaPlugin main) {
         MainThreadExecutor.plugin = main;
     }
 
     @Override
-    public void execute(@NotNull Runnable runnable) {
+    public void execute(Runnable runnable) {
         if (Bukkit.isPrimaryThread()) {
             runnable.run();
             return;

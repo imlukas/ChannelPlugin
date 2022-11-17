@@ -1,16 +1,15 @@
 package me.imlukas.devnicschatplugin.listeners;
 
 import me.imlukas.devnicschatplugin.DevnicsChatPlugin;
-import me.imlukas.devnicschatplugin.channels.ChannelCache;
+import me.imlukas.devnicschatplugin.channels.data.ChannelCache;
 import me.imlukas.devnicschatplugin.channels.config.ChannelConfig;
-import me.imlukas.devnicschatplugin.channels.impl.ChannelData;
+import me.imlukas.devnicschatplugin.channels.data.ChannelData;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.util.Set;
 import java.util.UUID;
 
 public class AsyncPlayerChatListener implements Listener {

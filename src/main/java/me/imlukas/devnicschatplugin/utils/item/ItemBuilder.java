@@ -2,7 +2,7 @@ package me.imlukas.devnicschatplugin.utils.item;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
