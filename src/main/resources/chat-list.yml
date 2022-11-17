@@ -1,0 +1,33 @@
+rows: 6
+title: "&7&lChat List"
+
+layout:
+  - 'b b b b b b b b b'
+  - 'b . . . . . . . b'
+  - 'b . . . . . . . b'
+  - 'b . . . . . . . b'
+  - 'b b b b b b b b b'
+  - 'p b2 b2 b2 cl b2 b2 b2 n'
+
+pagination:
+  next-page: 'n'
+  previous-page: 'p'
+  active-item: 'd'
+  filler: '.'
+
+items:
+  d:
+    type: BOOK
+    name: "&a%channel-name%"
+  d-active:
+    type: ENCHANTED_BOOK
+    name: "&c%channel-name%"
+  cl:
+    type: BARRIER
+    name: "&c&lClose"
+  b2:
+    type: BLUE_STAINED_GLASS_PANE
+    name: " "
+  b:
+    type: GRAY_STAINED_GLASS_PANE
+    name: " "

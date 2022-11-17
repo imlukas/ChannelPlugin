@@ -1,0 +1,8 @@
+name: DevnicsChatPlugin
+version: '${version}'
+main: me.imlukas.devnicschatplugin.DevnicsChatPlugin
+api-version: 1.19
+commands:
+  channel:
+    aliases:
+      - ch

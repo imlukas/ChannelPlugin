@@ -1,0 +1,24 @@
+channels:
+  # Default channels
+  # This channels' id should not be changed.
+  a431278f-4228-4915-aa5a-a8afabef4815:
+    name: "Global"
+    prefix: "[Global]"
+    range: 0 # 0 = no range
+    worlds:
+  a431278f-4228-4915-aa5a-a8afabef4816:
+    name: "Local"
+    prefix: "[Local]"
+    range: 35
+    worlds:
+      - world
+      - world_nether
+      - world_the_end
+  a431278f-4228-4915-aa5a-a8afabef4817:
+    name: "Whisper"
+    prefix: "[Whisper]"
+    range: 10
+  a431278f-4228-4915-aa5a-a8afabef4818:
+    name: "Local"
+    prefix: "[Shout]"
+    range: 100
